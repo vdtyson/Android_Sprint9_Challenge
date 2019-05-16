@@ -16,9 +16,7 @@ Good luck!
 
 ## Screen Recording
 
-This screen recording previews the look and feel of a completed project that meets the MVP requirements for this project.
-
-<img src="pin_drop.mp4" width="300">
+There is a screen recording in this repo which previews the look and feel of a completed project that meets the MVP requirements for this project.
 
 This is an example showing how two views can look different when using different parameters.
 
