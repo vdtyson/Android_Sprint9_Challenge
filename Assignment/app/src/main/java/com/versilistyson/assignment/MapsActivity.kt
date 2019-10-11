@@ -57,22 +57,12 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMarker
 
         addMarkerBttn.setOnMenuItemClickListener(
             MenuItem.OnMenuItemClickListener {
-                mediaPlayer = MediaPlayer.create(this, R.raw.plop)
-                placeMarker()
-                mediaPlayer.start()
+                placeMarker(map.cameraPosition.target)
                 return@OnMenuItemClickListener true
             }
         )
 
-        /**
-         * Manipulates the map once available.
-         * This callback is triggered when the map is ready to be used.
-         * This is where we can add markers or lines, add listeners or move the camera. In this case,
-         * we just add a marker near Sydney, Australia.
-         * If Google Play services is not installed on the device, the user will be prompted to install
-         * it inside the SupportMapFragment. This method will only be triggered once the user has
-         * installed Google Play services and returned to the app.
-         */
+
     }
     override fun onMapReady(googleMap: GoogleMap) {
         map = googleMap
@@ -106,11 +96,20 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMarker
                 map.animateCamera(CameraUpdateFactory.newLatLngZoom(currentLatLng, 12f))
             }
         }
+        map.setOnMapLongClickListener {
+            placeMarker(it)
+        }
     }
-    private fun placeMarker() {
-        val latLngForNewMarker = map.cameraPosition.target
+    private fun placeMarker(latLngForNewMarker: LatLng) {
         map.addMarker(MarkerOptions().position(latLngForNewMarker))
+        playPlopSound()
     }
+    private fun playPlopSound() {
+        mediaPlayer = MediaPlayer.create(this, R.raw.plop)
+        mediaPlayer.start()
+    }
+
+
 
 
     private fun jumpToCurrentLocation() {
