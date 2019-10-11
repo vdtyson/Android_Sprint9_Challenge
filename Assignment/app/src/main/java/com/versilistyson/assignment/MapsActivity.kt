@@ -1,4 +1,4 @@
-package com.versilistyson.additionalandroidsprint
+package com.versilistyson.assignment
 
 import android.content.pm.PackageManager
 import android.location.Location
@@ -74,40 +74,41 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMarker
          * installed Google Play services and returned to the app.
          */
     }
-        override fun onMapReady(googleMap: GoogleMap) {
-            map = googleMap
-            map.uiSettings.isZoomControlsEnabled = true
-            map.setOnMarkerClickListener(this)
+    override fun onMapReady(googleMap: GoogleMap) {
+        map = googleMap
+        map.uiSettings.isZoomControlsEnabled = true
+        map.setOnMarkerClickListener(this)
 
 
-            setUpMap()
+        setUpMap()
+    }
+
+    private fun setUpMap() {
+        if (ActivityCompat.checkSelfPermission(
+                this,
+                android.Manifest.permission.ACCESS_FINE_LOCATION
+            ) != PackageManager.PERMISSION_GRANTED
+        ) {
+            ActivityCompat.requestPermissions(
+
+                this,
+                arrayOf(android.Manifest.permission.ACCESS_FINE_LOCATION),
+                LOCATION_PERMISSION_REQUEST_CODE
+            )
+            return
         }
-
-        private fun setUpMap() {
-            if (ActivityCompat.checkSelfPermission(
-                    this,
-                    android.Manifest.permission.ACCESS_FINE_LOCATION
-                ) != PackageManager.PERMISSION_GRANTED
-            ) {
-                ActivityCompat.requestPermissions(
-                    this,
-                    arrayOf(android.Manifest.permission.ACCESS_FINE_LOCATION),
-                    LOCATION_PERMISSION_REQUEST_CODE
-                )
-                return
-            }
-            map.isMyLocationEnabled = true
-            fusedLocationProvderClient.lastLocation.addOnSuccessListener(this) { location ->
-                if (location != null) {
-                    lastLocation = location
-                    val currentLatLng = LatLng(location.latitude, location.longitude)
-                    map.addMarker(MarkerOptions().position(currentLatLng).title("Current Location"))
-                    map.animateCamera(CameraUpdateFactory.newLatLngZoom(currentLatLng, 12f))
-                }
+        map.isMyLocationEnabled = true
+        fusedLocationProvderClient.lastLocation.addOnSuccessListener(this) { location ->
+            if (location != null) {
+                lastLocation = location
+                val currentLatLng = LatLng(location.latitude, location.longitude)
+                map.addMarker(MarkerOptions().position(currentLatLng).title("Current Location"))
+                map.animateCamera(CameraUpdateFactory.newLatLngZoom(currentLatLng, 12f))
             }
         }
+    }
     fun placeMarker() {
-       val latLngForNewMarker = map.cameraPosition.target
+        val latLngForNewMarker = map.cameraPosition.target
         map.addMarker(MarkerOptions().position(latLngForNewMarker))
     }
 
@@ -116,4 +117,3 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMarker
         map.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 12f))
     }
 }
-

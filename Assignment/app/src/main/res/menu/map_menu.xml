@@ -3,14 +3,14 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
         android:id="@+id/add_marker_menu_bttn"
-        android:title="Add Marker"
+        android:title="@string/add_marker"
         android:icon="@drawable/ic_add_white_24dp"
-        app:showAsAction="always"
-    />
+        app:showAsAction="ifRoom"
+        />
     <item
         android:id="@+id/go_to_current_location_menu_bttn"
-        android:title="My Location"
+        android:title="@string/my_location"
         android:icon="@drawable/ic_my_location_white_24dp"
-        app:showAsAction="always"
-    />
+        app:showAsAction="ifRoom"
+        />
 </menu>

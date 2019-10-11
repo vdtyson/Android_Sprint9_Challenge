@@ -6,19 +6,19 @@
     xmlns:map="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
-   <com.google.android.material.appbar.AppBarLayout android:id="@+id/app_bar_layout"
-       android:layout_gravity="top"
-       android:layout_width="match_parent"
-       android:layout_height="wrap_content">
+    <com.google.android.material.appbar.AppBarLayout android:id="@+id/app_bar_layout"
+        android:layout_gravity="top"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
-       <com.google.android.material.appbar.MaterialToolbar android:id="@+id/map_toolbar"
-           map:title="AdditionalAndroidSprint"
-           android:background="@color/colorPrimary"
-           map:menu="@menu/map_menu"
-           android:layout_width="match_parent"
-           android:layout_height="?attr/actionBarSize"/>
+        <com.google.android.material.appbar.MaterialToolbar android:id="@+id/map_toolbar"
+            map:title="AdditionalAndroidSprint"
+            android:background="@color/colorPrimary"
+            map:menu="@menu/map_menu"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"/>
 
-   </com.google.android.material.appbar.AppBarLayout>
+    </com.google.android.material.appbar.AppBarLayout>
 
     <fragment
         android:id="@+id/map"
@@ -26,5 +26,5 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".MapsActivity"
-    />
+        />
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
