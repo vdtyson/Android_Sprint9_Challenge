@@ -107,12 +107,13 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMarker
             }
         }
     }
-    fun placeMarker() {
+    private fun placeMarker() {
         val latLngForNewMarker = map.cameraPosition.target
         map.addMarker(MarkerOptions().position(latLngForNewMarker))
     }
 
-    fun jumpToCurrentLocation() {
+
+    private fun jumpToCurrentLocation() {
         val latLng = LatLng(lastLocation.latitude, lastLocation.longitude)
         map.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 12f))
     }
